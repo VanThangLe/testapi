@@ -21,39 +21,20 @@ Feature: Test daily
 
   @tag1
   Scenario Outline: I post a comment
-    Given I want to write a step with precondition
-    And some other precondition
-    When I complete action
-    And some other action
-    And yet another action
-    Then I validate the outcome
-    And check more outcomes
-
-  @tag2
-  Scenario Outline: I put a comment
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
-
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
-      
-  @tag3
-  Scenario Outline: I get list comment
-  	Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
+    When I post a comment with <body> = 'Test comment'
+    And <author> = 'Le Van Thang'
+    And <email> = 'thanglv3@sapo.vn'
+    Then I click GuiBL
   
-  @tag4
-  Scenario Outline: I get a comment
-  	Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
+  @tag3
+  Scenario Outline: I put a comment
+    When:
     
-  @tag5
-	Scenario Outline: I delete a comment
-		Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
+    Example:
+    
+    
+  @tag4
+	Scenario Outline: I get a comment
+	
+	@tag5
+  Scenario Outline: I delete comment
