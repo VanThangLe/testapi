@@ -20,21 +20,29 @@
 Feature: Test daily
 
   @tag1
-  Scenario Outline: I post a comment
-    When I post a comment with <body> = 'Test comment'
-    And <author> = 'Le Van Thang'
-    And <email> = 'thanglv3@sapo.vn'
-    Then I click GuiBL
-  
+  Scenario Outline: Post a comment
+    When I post a comment with <body> and <author> and <email>
+
+    Examples: 
+      | body         | author       | email            |
+      | Test comment | Le Van Thang | thanglv3@sapo.vn |
+
+  @tag2
+  Scenario Outline: Put a comment
+    When I put a comment with <body> and <author> and <email>
+
+    Examples: 
+      | body                | author  | email                 |
+      | Test comment update | ThangLV | thang.le.fc@gmail.com |
+
   @tag3
-  Scenario Outline: I put a comment
-    When:
-    
-    Example:
-    
-    
+  Scenario: Get list comments
+    When I get list comments
+
   @tag4
-	Scenario Outline: I get a comment
-	
-	@tag5
-  Scenario Outline: I delete comment
+  Scenario: Get a comment
+    When I get a comment
+
+  @tag5
+  Scenario: Delete comment
+    When I delete comment

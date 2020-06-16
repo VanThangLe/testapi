@@ -20,40 +20,29 @@
 Feature: Test daily
 
   @tag1
-  Scenario Outline: I post a article
-    Given I want to write a step with precondition
-    And some other precondition
-    When I complete action
-    And some other action
-    And yet another action
-    Then I validate the outcome
-    And check more outcomes
-
-  @tag2
-  Scenario Outline: I put a article
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
+  Scenario Outline: Post a article
+    When I post a article with <title> and <author> and <tags> and <content>
 
     Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
-      
+      | title        | author  | tags      | content      |
+      | Test article | ThangLV | Test tags | Test content |
+
+  @tag2
+  Scenario Outline: Put a article
+    When I post a article with <title> and <author> and <tags> and <content>
+
+    Examples: 
+      | title               | author       | tags             | content             |
+      | Test article update | Le Van Thang | Test tags update | Test content update |
+
   @tag3
-  Scenario Outline: I get list article
-  	Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
-  
+  Scenario: Get list article
+    When I get list articles
+
   @tag4
-  Scenario Outline: I get a article
-  	Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
-    
+  Scenario: Get a article
+    When I get a article
+
   @tag5
-	Scenario Outline: I delete a article
-		Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
+  Scenario: Delete a article
+    When I delete a article
