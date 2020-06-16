@@ -1,5 +1,10 @@
 package bizweb.test.model.blog;
 
-public class BlogReponse {
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class BlogReponse {
+	private Blog blog;
 }

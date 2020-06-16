@@ -1,5 +1,14 @@
 package bizweb.test.model.comment;
 
-public class Comment {
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class Comment extends BaseComment{
+	private String body;
+	private String author;
+	private String email;
+	private String content;
+	
 }

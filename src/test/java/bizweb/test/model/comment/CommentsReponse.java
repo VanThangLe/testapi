@@ -1,5 +1,12 @@
 package bizweb.test.model.comment;
 
-public class CommentsReponse {
+import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CommentsReponse {
+	private List<Comment> comment;
 }

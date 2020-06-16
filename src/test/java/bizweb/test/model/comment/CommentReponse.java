@@ -1,5 +1,10 @@
 package bizweb.test.model.comment;
 
-public class CommentReponse {
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class CommentReponse {
+	private Comment comment;
 }

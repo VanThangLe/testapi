@@ -1,5 +1,12 @@
 package bizweb.test.model.blog;
 
-public class BlogsReponse {
+import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class BlogsReponse {
+	private List<Blog> blog;
 }

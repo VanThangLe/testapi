@@ -1,5 +1,10 @@
 package bizweb.test.model.blog;
 
-public class Blog {
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class Blog extends BaseBlog{
+	private String name;
 }

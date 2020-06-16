@@ -1,5 +1,14 @@
 package bizweb.test.model.article;
 
-public class Article {
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class Article extends BaseArticle{
+	private String title;
+	private String author;
+	private String tags;
+	private String content;
+	
 }
