@@ -21,7 +21,7 @@ Feature: Test daily
 
   @tag1
   Scenario Outline: Post a blog
-    When I post a blog with <name> = 'Test blog'
+    When I post a blog with <name>
 
     Examples: 
       | name      |
@@ -29,11 +29,11 @@ Feature: Test daily
 
   @tag2
   Scenario Outline: Put a blog
-    When I put a blog with <name> = 'Test blog update'
+    When I put a blog with <name>
 
     Examples: 
       | name             |
-      | Test blod update |
+      | Test blog update |
 
   @tag3
   Scenario: Get list blog

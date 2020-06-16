@@ -1,30 +1,47 @@
 package bizweb.test.cucumber.stepdefs;
 
-import cucumber.api.java.en.When;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class ArticleStepDefs {
-	@When("^I post a article with Test article and ThangLV and Test tags and Test content$")
-	public void i_post_a_article_with_Test_article_and_ThangLV_and_Test_tags_and_Test_content() throws Throwable {
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+
+import bizweb.test.model.blog.BlogReponse;
+import bizweb.test.model.blog.BlogsReponse;
+import cucumber.api.java.en.When;
+import lombok.val;
+
+public class ArticleStepDefs extends StepDefs {
+	public static int idArticle;
+	public static List<Integer> idArticles = new ArrayList<>();
+	
+	@When("^I post a article$")
+	public void i_post_a_article(String title, String author, String tags, String content) throws Throwable {
 
 	}
 
-	@When("^I post a article with Test article update and Le Van Thang and Test tags update and Test content update$")
-	public void i_post_a_article_with_Test_article_update_and_Le_Van_Thang_and_Test_tags_update_and_Test_content_update() throws Throwable {
+	@When("^I put a article")
+	public void i_put_a_article(String title, String author, String tags, String content) throws Throwable {
 
 	}
 
 	@When("^I get list articles$")
 	public void i_get_list_articles() throws Throwable {
-
+		val entity = restTemplate.getForEntity(getUrl("comments.json"), BlogsReponse.class);
+		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
 	@When("^I get a article$")
 	public void i_get_a_article() throws Throwable {
-
+		val entity = restTemplate.getForEntity(getUrl("comments/" + idArticle + ".json"), BlogReponse.class);
+		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
 	@When("^I delete a article$")
 	public void i_delete_a_article() throws Throwable {
-
+		val entity = restTemplate.exchange(getUrl("comments/" + idArticle + ".json"), HttpMethod.DELETE, null, Void.class);
+		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 }

@@ -29,7 +29,7 @@ Feature: Test daily
 
   @tag2
   Scenario Outline: Put a article
-    When I post a article with <title> and <author> and <tags> and <content>
+    When I put a article with <title> and <author> and <tags> and <content>
 
     Examples: 
       | title               | author       | tags             | content             |
