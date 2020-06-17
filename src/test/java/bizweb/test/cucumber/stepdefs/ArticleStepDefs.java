@@ -8,8 +8,8 @@ import java.util.List;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 
-import bizweb.test.model.blog.BlogReponse;
-import bizweb.test.model.blog.BlogsReponse;
+import bizweb.test.model.blog.BlogResponse;
+import bizweb.test.model.blog.BlogsResponse;
 import cucumber.api.java.en.When;
 import lombok.val;
 
@@ -29,13 +29,13 @@ public class ArticleStepDefs extends StepDefs {
 
 	@When("^I get list articles$")
 	public void i_get_list_articles() throws Throwable {
-		val entity = restTemplate.getForEntity(getUrl("comments.json"), BlogsReponse.class);
+		val entity = restTemplate.getForEntity(getUrl("comments.json"), BlogsResponse.class);
 		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
 	@When("^I get a article$")
 	public void i_get_a_article() throws Throwable {
-		val entity = restTemplate.getForEntity(getUrl("comments/" + idArticle + ".json"), BlogReponse.class);
+		val entity = restTemplate.getForEntity(getUrl("comments/" + idArticle + ".json"), BlogResponse.class);
 		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 

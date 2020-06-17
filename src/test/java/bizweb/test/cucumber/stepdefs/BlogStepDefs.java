@@ -8,8 +8,8 @@ import java.util.List;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 
-import bizweb.test.model.blog.BlogReponse;
-import bizweb.test.model.blog.BlogsReponse;
+import bizweb.test.model.blog.BlogResponse;
+import bizweb.test.model.blog.BlogsResponse;
 import cucumber.api.java.en.When;
 import lombok.val;
 
@@ -29,13 +29,13 @@ public class BlogStepDefs extends StepDefs {
 
 	@When("^I get list blog$")
 	public void i_get_list_blog() throws Throwable {
-		val entity = restTemplate.getForEntity(getUrl("comments.json"), BlogsReponse.class);
+		val entity = restTemplate.getForEntity(getUrl("comments.json"), BlogsResponse.class);
 		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
 	@When("^I get a blog$")
 	public void i_get_a_blog() throws Throwable {
-		val entity = restTemplate.getForEntity(getUrl("comments/" + idBlog + ".json"), BlogReponse.class);
+		val entity = restTemplate.getForEntity(getUrl("comments/" + idBlog + ".json"), BlogResponse.class);
 		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
