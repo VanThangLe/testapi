@@ -7,6 +7,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ArticlesReponse {
+public class ArticlesResponse {
 	private List<Article> articles;
 }
