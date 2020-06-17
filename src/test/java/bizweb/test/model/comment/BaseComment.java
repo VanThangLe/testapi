@@ -24,18 +24,18 @@ public class BaseComment {
 	}
 	
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 	
 	public String getBodyComment() {
-		return body;
+		return this.body;
 	}
 	
 	public String getAuthor() {
-		return author;
+		return this.author;
 	}
 	
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 }

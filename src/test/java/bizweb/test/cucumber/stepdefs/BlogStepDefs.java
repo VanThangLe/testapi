@@ -5,9 +5,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 
+import bizweb.test.model.blog.BlogRequest;
 import bizweb.test.model.blog.BlogResponse;
 import bizweb.test.model.blog.BlogsResponse;
 import cucumber.api.java.en.When;
@@ -16,15 +18,29 @@ import lombok.val;
 public class BlogStepDefs extends StepDefs {
 	public static int idBlog;
 	public static List<Integer> idBlogs = new ArrayList<>();
+	public BlogRequest request = new BlogRequest();
 	
-	@When("^I post a blog with Test blog = 'Test blog'$")
-	public void i_post_a_blog_with_Test_blog_Test_blog() throws Throwable {
-	 
+	@When("^I post a blog with ([^\\\"]*)$")
+	public void i_post_a_blog(String name) throws Throwable {
+		request.setName(name);
+		HttpEntity<BlogRequest> requestEntity = new HttpEntity<>(request, headers);
+		val entity = restTemplate.postForEntity(getUrl("blogs.json"), requestEntity, BlogResponse.class);
+		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+		if (entity.getStatusCodeValue() == 201) {
+			assertThat(entity.getBody().getBlog().getName()).isEqualTo(name);
+		}
+		idBlog = entity.getBody().getBlog().getId();
 	}
 
-	@When("^I put a blog with Test blod update = 'Test blog update'$")
-	public void i_put_a_blog_with_Test_blod_update_Test_blog_update() throws Throwable {
-
+	@When("^I put a blog with ([^\\\"]*)$")
+	public void i_put_a_blog(String name) throws Throwable {
+		request.setName(name);
+		HttpEntity<BlogRequest> requestEntity = new HttpEntity<>(request, headers);
+		val entity = restTemplate.exchange(getUrl("blogs"+ idBlog + ".json"), HttpMethod.PUT, requestEntity, BlogResponse.class);
+		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+		if(entity.getStatusCodeValue() == 200) {
+			assertThat(entity.getBody().getBlog().getName()).isEqualTo(name);
+		}
 	}
 
 	@When("^I get list blog$")

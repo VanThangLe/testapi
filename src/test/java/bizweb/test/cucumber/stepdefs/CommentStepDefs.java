@@ -20,7 +20,7 @@ public class CommentStepDefs extends StepDefs {
 	public static List<Integer> idComments = new ArrayList<>();
 	public CommentRequest request = new CommentRequest();
 
-	@When("^I post a comment")
+	@When("^I post a comment with ([^\\\"]*) and ([^\\\"]*) and ([^\\\"]*)$")
 	public void i_post_a_comment(String body, String author, String email) throws Throwable {
 		request.setBodyComment(body);
 		request.setAuthor(author);
@@ -36,7 +36,7 @@ public class CommentStepDefs extends StepDefs {
 		idComment = entity.getBody().getComment().getId();
 	}
 
-	@When("^I put a comment")
+	@When("^I put a comment with ([^\\\"]*) and ([^\\\"]*) and ([^\\\"]*)$")
 	public void i_put_a_comment(String body, String author, String email) throws Throwable {
 		request.setBodyComment(body);
 		request.setAuthor(author);

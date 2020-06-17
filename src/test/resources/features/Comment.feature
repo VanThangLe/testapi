@@ -22,18 +22,18 @@ Feature: Test daily
   @tag1
   Scenario Outline: Post a comment
     When I post a comment with <body> and <author> and <email>
-
+    
     Examples: 
-      | body         | author       | email            |
-      | Test comment | Le Van Thang | thanglv3@sapo.vn |
+      | body     | author | email            |
+      | Comment1 | Thang1 | thanglv3@sapo.vn |
 
   @tag2
   Scenario Outline: Put a comment
     When I put a comment with <body> and <author> and <email>
 
     Examples: 
-      | body                | author  | email                 |
-      | Test comment update | ThangLV | thang.le.fc@gmail.com |
+      | body     | author | email                 |
+      | Comment2 | Thang2 | thang.le.fc@gmail.com |
 
   @tag3
   Scenario: Get list comments
