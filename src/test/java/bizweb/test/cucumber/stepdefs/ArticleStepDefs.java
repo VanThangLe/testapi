@@ -17,7 +17,8 @@ import lombok.val;
 
 public class ArticleStepDefs extends StepDefs {
 	public static int idArticle;
-	public static List<Integer> idArticles = new ArrayList<>();
+	public static List<Integer> idArticleList = new ArrayList<>();
+	public static List<Integer> idCommentList = new ArrayList<>();
 	public ArticleRequest request = new ArticleRequest();
 	
 	@When("^I post a article with ([^\\\"]*) and ([^\\\"]*) and ([^\\\"]*) and ([^\\\"]*)$")

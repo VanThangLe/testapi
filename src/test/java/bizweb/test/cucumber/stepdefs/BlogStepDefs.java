@@ -17,7 +17,8 @@ import lombok.val;
 
 public class BlogStepDefs extends StepDefs {
 	public static int idBlog;
-	public static List<Integer> idBlogs = new ArrayList<>();
+	public static List<Integer> idBlogList = new ArrayList<>();
+	public static List<Integer> idArticleList = new ArrayList<>();
 	public BlogRequest request = new BlogRequest();
 	
 	@When("^I post a blog with ([^\\\"]*)$")
