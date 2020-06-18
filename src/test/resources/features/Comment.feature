@@ -18,31 +18,26 @@
 #Sample Feature Definition Template
 @daily
 Feature: Test daily
-
-  @tag1
+	Scenario: Post a blog
+		When I post a blog with name equal 'blog'
+	
+	Scenario: Post a article
+		When I post a article with title equal 'title' and author equal 'author' and tags
   Scenario Outline: Post a comment
-    When I post a comment with <body> and <author> and <email>
-    
-    Examples: 
-      | body     | author | email            |
-      | Comment1 | Thang1 | thanglv3@sapo.vn |
-
-  @tag2
-  Scenario Outline: Put a comment
-    When I put a comment with <body> and <author> and <email>
+    When I post a comment <body> and <author> and <email> and <blogid> and <articleid>
 
     Examples: 
-      | body     | author | email                 |
-      | Comment2 | Thang2 | thang.le.fc@gmail.com |
+      | body    | author | email            | blogid | articleid |
+      | comment | thang  | thanglv3@sapo.vn | blogid | articleid |
 
-  @tag3
+  Scenario: Put a comment
+    When I put a comment with body equal 'comment update'
+
   Scenario: Get list comments
     When I get list comments
 
-  @tag4
   Scenario: Get a comment
     When I get a comment
 
-  @tag5
   Scenario: Delete comment
     When I delete comment

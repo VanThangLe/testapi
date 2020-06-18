@@ -8,5 +8,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CommentsResponse {
-	private List<Comment> comment;
+	private List<Comment> comments;
 }

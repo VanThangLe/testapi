@@ -19,30 +19,17 @@
 @daily
 Feature: Test daily
 
-  @tag1
-  Scenario Outline: Post a blog
-    When I post a blog with <name>
+  Scenario: Post a blog
+    When I post a blog with <name> equal 'Bong da'
 
-    Examples: 
-      | name      |
-      | Test blog |
+  Scenario: Put a blog
+    When I put a blog with <name> equal 'Tin tuc'
 
-  @tag2
-  Scenario Outline: Put a blog
-    When I put a blog with <name>
-
-    Examples: 
-      | name             |
-      | Test blog update |
-
-  @tag3
   Scenario: Get list blog
     When I get list blog
 
-  @tag4
   Scenario: Get a blog
     When I get a blog
 
-  @tag5
   Scenario: I delete a blog
     When I delete a blog

@@ -19,7 +19,6 @@
 @daily
 Feature: Test daily
 
-  @tag1
   Scenario Outline: Post a article
     When I post a article with <title> and <author> and <tags> and <content>
 
@@ -27,22 +26,14 @@ Feature: Test daily
       | title        | author  | tags      | content      |
       | Test article | ThangLV | Test tags | Test content |
 
-  @tag2
-  Scenario Outline: Put a article
-    When I put a article with <title> and <author> and <tags> and <content>
+  Scenario: Put a article
+    When I put a article with <title> equals 'Test article update'
 
-    Examples: 
-      | title               | author       | tags             | content             |
-      | Test article update | Le Van Thang | Test tags update | Test content update |
-
-  @tag3
-  Scenario: Get list article
+  Scenario: Get list articles
     When I get list articles
 
-  @tag4
   Scenario: Get a article
     When I get a article
 
-  @tag5
   Scenario: Delete a article
     When I delete a article
