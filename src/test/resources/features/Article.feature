@@ -19,6 +19,13 @@
 @daily
 Feature: Test daily
 
+  Scenario Outline: Post a blog article
+    When I post a blog article with <name>
+
+    Examples: 
+      | name    |
+      | Bong da |
+
   Scenario Outline: Post a article
     When I post a article with <title> and <author> and <tags> and <content>
 
@@ -26,8 +33,12 @@ Feature: Test daily
       | title        | author  | tags      | content      |
       | Test article | ThangLV | Test tags | Test content |
 
-  Scenario: Put a article
-    When I put a article with title equals 'ArticleUpdate'
+  Scenario Outline: Put a article
+    When I put a article with <title>
+
+    Examples: 
+      | title         |
+      | ArticleUpdate |
 
   Scenario: Get list articles
     When I get list articles
