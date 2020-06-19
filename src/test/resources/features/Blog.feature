@@ -19,11 +19,19 @@
 @daily
 Feature: Test daily
 
-  Scenario: Post a blog
-    When I post a blog with <name> equal 'Bong da'
+  Scenario Outline: Post a blog
+    When I post a blog with <name>
 
-  Scenario: Put a blog
-    When I put a blog with <name> equal 'Tin tuc'
+    Examples: 
+      | name    |
+      | Bong da |
+
+  Scenario Outline: Put a blog
+    When I put a blog with <name>
+
+    Examples: 
+      | name   |
+      | Tintuc |
 
   Scenario: Get list blog
     When I get list blog

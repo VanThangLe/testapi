@@ -21,7 +21,7 @@ public class ArticleStepDefs extends StepDefs {
 	public static List<Integer> idCommentList = new ArrayList<>();
 	public ArticleRequest request = new ArticleRequest();
 	
-	@When("^I post a article with ([^\\\"]*) and ([^\\\"]*) and ([^\\\"]*) and ([^\\\"]*)$")
+	@When("^I post a article with ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*)$")
 	public void i_post_a_article(String title, String author, String tags, String content) throws Throwable {
 		request.setTitle(title);
 		request.setAuthor(author);
@@ -39,7 +39,7 @@ public class ArticleStepDefs extends StepDefs {
 		idArticle = entity.getBody().getArticle().getId();
 	}
 
-	@When("^I put a article with ([^\\\"]*) and ([^\\\"]*) and ([^\\\"]*) and ([^\\\"]*)")
+	@When("^I put a article with ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*)")
 	public void i_put_a_article(String title, String author, String tags, String content) throws Throwable {
 		request.setTitle(title);
 		request.setAuthor(author);

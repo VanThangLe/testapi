@@ -27,7 +27,7 @@ Feature: Test daily
       | Test article | ThangLV | Test tags | Test content |
 
   Scenario: Put a article
-    When I put a article with <title> equals 'Test article update'
+    When I put a article with title equals 'ArticleUpdate'
 
   Scenario: Get list articles
     When I get list articles
