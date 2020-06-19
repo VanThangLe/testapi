@@ -10,6 +10,6 @@ public class BaseComment {
 	private String bodyComment;
 	private String author;
 	private String email;
-	private int blogid;
-	private int articleid;
+	private int blogId;
+	private int articleId;
 }

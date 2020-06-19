@@ -30,8 +30,8 @@ Feature: Test daily
     When I post a article with <title> and <author> and <tags> and <content>
 
     Examples: 
-      | title        | author  | tags      | content      |
-      | Test article | ThangLV | Test tags | Test content |
+      | title   | author  | tags | content     |
+      | Article | ThangLV | tags | TestContent |
 
   Scenario Outline: Put a article
     When I put a article with <title>

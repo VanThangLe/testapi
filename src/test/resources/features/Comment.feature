@@ -38,10 +38,12 @@ Feature: Test daily
 
     Examples: 
       | body    | author | email            | blogid | articleid |
-      | comment | thang  | thanglv3@sapo.vn | blogid | articleid |
+      | comment | thang  | thanglv3@sapo.vn | 478449 |   1911375 |
 
-  Scenario: Put a comment
-    When I put a comment with body equal 'CommentUpdate'
+  Scenario Outline: Put a comment
+    When I put a comment with <body>
+      | body          |
+      | CommentUpdate |
 
   Scenario: Get list comments
     When I get list comments

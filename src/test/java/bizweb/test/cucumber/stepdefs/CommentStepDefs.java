@@ -10,6 +10,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 
 import bizweb.test.model.comment.CommentResponse;
+import bizweb.test.model.article.ArticleRequest;
+import bizweb.test.model.article.ArticleResponse;
+import bizweb.test.model.blog.BlogRequest;
+import bizweb.test.model.blog.BlogResponse;
 import bizweb.test.model.comment.Comment;
 import bizweb.test.model.comment.CommentRequest;
 import bizweb.test.model.comment.CommentsResponse;
@@ -18,16 +22,66 @@ import lombok.val;
 
 public class CommentStepDefs extends StepDefs {
 	public static int idComment;
+	public static int idBlog;
+	public static int idArticle;
 	public static List<Integer> idCommentList = new ArrayList<>();
+	public static List<Integer> idBlogList = new ArrayList<>();
+	
+	@When("^I post a blog comment with ([^\"]*)$")
+	public void i_post_a_blog_comment(String name) throws Throwable {
+		BlogRequest requestBlog = new BlogRequest();
+		requestBlog.setName(name);
+		System.out.println("----------------------------");
+		System.out.println(jsonMapper.writeValueAsString(requestBlog));
+		System.out.println("----------------------------");
+		HttpEntity<BlogRequest> requestEntity = new HttpEntity<>(requestBlog, headers);
+		val entity = restTemplate.postForEntity(getUrl("blogs" + ".json"), requestEntity, BlogResponse.class);
+		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+		if (entity.getStatusCodeValue() == 201) {
+			System.out.println("----------------------------------------------------------");
+			idBlog = entity.getBody().getBlog().getId();
+			idBlogList.add(idBlog);
+			System.out.println(idBlogList);
+			System.out.println("----------------------------------------------------------");
+			assertThat(entity.getBody().getBlog().getName()).isEqualTo(name);
+		}
+	}
+	
+//	@When("^I post a article comment with ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*)$")
+//	public void i_post_a_article_comment(String title, String author, String tags, String content) throws Throwable {
+//		ArticleRequest requestArticle = new ArticleRequest();
+//		requestArticle.setTitle(title);
+//		requestArticle.setAuthor(author);
+//		requestArticle.setTags(tags);
+//		requestArticle.setContent(content);
+//		System.out.println("----------------------------");
+//		System.out.println(jsonMapper.writeValueAsString(requestArticle));
+//		System.out.println("----------------------------");
+//		HttpEntity<ArticleRequest> requestEntity = new HttpEntity<>(requestArticle, headers);
+//		val entity = restTemplate.postForEntity(getUrl("blogs/" + idBlogList.get(0) + "/articles" + ".json"),
+//				requestEntity, ArticleResponse.class);
+//		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+//		if (entity.getStatusCodeValue() == 201) {
+//			System.out.println("----------------------------------------------------------");
+//			idArticle = entity.getBody().getArticle().getId();
+//			idArticleList.add(idArticle);
+//			System.out.println(idArticleList);
+//			System.out.println("----------------------------------------------------------");
+//			assertThat(entity.getBody().getArticle().getTitle()).isEqualTo(title);
+//			assertThat(entity.getBody().getArticle().getAuthor()).isEqualTo(author);
+//			assertThat(entity.getBody().getArticle().getTags()).isEqualTo(tags);
+//			assertThat(entity.getBody().getArticle().getContent()).isEqualTo(content);
+//		}
+//	}
 
 	@When("^I post a comment ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*) and ([^\"]*)$")
-	public void i_post_a_comment(String body, String author, String email, int blogid, int articleid) throws Throwable {
+	public void i_post_a_comment(String body, String author, String email, int idBlog, int idArticle) throws Throwable {
 		CommentRequest request = new CommentRequest();
 		request.setBodyComment(body);
 		request.setAuthor(author);
 		request.setEmail(email);
-		request.setBlogid(blogid);
-		request.setArticleid(articleid);
+		request.setBlogId(idBlog);
+		request.setArticleId(idArticle);
 		System.out.println("----------------------------");
 		System.out.println(jsonMapper.writeValueAsString(request));
 		System.out.println("----------------------------");
@@ -43,6 +97,8 @@ public class CommentStepDefs extends StepDefs {
 			assertThat(entity.getBody().getComment().getBodyComment()).isEqualTo(body);
 			assertThat(entity.getBody().getComment().getAuthor()).isEqualTo(author);
 			assertThat(entity.getBody().getComment().getEmail()).isEqualTo(email);
+			assertThat(entity.getBody().getComment().getBlogid()).isEqualTo(idBlog);
+			assertThat(entity.getBody().getComment().getArticleId()).isEqualTo(idArticle);
 		}
 		idComment = entity.getBody().getComment().getId();
 	}
@@ -54,7 +110,7 @@ public class CommentStepDefs extends StepDefs {
 		val request = getForEntity.getBody().getComment();
 		request.setBodyComment(body);
 		HttpEntity<Comment> requestEntity = new HttpEntity<>(request, headers);
-		val entity = restTemplate.exchange(getUrl("comments"+ idCommentList.get(0) + ".json"), HttpMethod.PUT,
+		val entity = restTemplate.exchange(getUrl("comments/"+ idCommentList.get(0) + ".json"), HttpMethod.PUT,
 				requestEntity, CommentResponse.class);
 		System.out.println("----------------------------------------------------------");
 		System.out.println(jsonMapper.writeValueAsString(entity));
