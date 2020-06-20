@@ -26,19 +26,19 @@ Feature: Test daily
       | name |
       | blog |
 
-  Scenario Outline: Post a article
-    When I post a article with <title> and <author> and <tags> and <content>
+  Scenario Outline: Post a article comment
+    When I post a article comment with <title> and <author> and <tags> and <content>
 
     Examples: 
       | title | author | tags | content |
       | title | author | tags | content |
 
   Scenario Outline: Post a comment
-    When I post a comment <body> and <author> and <email> and <blogid> and <articleid>
+    When I post a comment <body> and <author> and <email>
 
     Examples: 
-      | body    | author | email            | blogid | articleid |
-      | comment | thang  | thanglv3@sapo.vn | 478449 |   1911375 |
+      | body    | author | email            |
+      | comment | thang  | thanglv3@sapo.vn |
 
   Scenario Outline: Put a comment
     When I put a comment with <body>
