@@ -103,9 +103,11 @@ public class ArticleStepDefs extends StepDefs {
 	@When("^I delete a article$")
 	public void i_delete_a_article() throws Throwable {
 		for (int i = 0; i < idArticleList.size(); i++) {
-			val entity = restTemplate.exchange(getUrl("blogs/" + idBlogList.get(0) + "/articles/" + idArticleList.get(0) + ".json"),
+			val entity = restTemplate.exchange(getUrl("blogs/" + idBlogList.get(i) + "/articles/" + idArticleList.get(i) + ".json"),
 					HttpMethod.DELETE, null, Void.class);
 			assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+			idBlogList.remove(i);
+			idArticleList.remove(i);
 		}
 	}
 }

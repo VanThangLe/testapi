@@ -93,6 +93,7 @@ public class BlogStepDefs extends StepDefs {
 //			System.out.println("----------------------------------------------------------");
 //			System.out.println(jsonMapper.writeValueAsString(entity));
 //			System.out.println("----------------------------------------------------------");
+			idBlogList.remove(i);
 		}
 	}
 
