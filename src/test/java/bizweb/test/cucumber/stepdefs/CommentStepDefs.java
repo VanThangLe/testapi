@@ -19,7 +19,6 @@ import bizweb.test.model.blog.BlogResponse;
 import bizweb.test.model.comment.Comment;
 import bizweb.test.model.comment.CommentRequest;
 import bizweb.test.model.comment.CommentsResponse;
-import bizweb.test.model.test.SharedData;
 import cucumber.api.java.en.When;
 import lombok.val;
 public class CommentStepDefs extends StepDefs {
@@ -28,7 +27,6 @@ public class CommentStepDefs extends StepDefs {
 	public static int idArticle;
 	public static List<Integer> idCommentList = new ArrayList<>();
 	public static List<Integer> idBlogList = new ArrayList<>();
-	public SharedData sharedData;
 	public Blog blog;
 	public Article article;
 	
@@ -87,11 +85,6 @@ public class CommentStepDefs extends StepDefs {
 		requestComment.setEmail(email);
 		requestComment.setBlogId(idBlog);
 		requestComment.setArticleId(idArticle);
-		Blog blog = sharedData.getBlog();
-		requestComment.setBlogId(blog.getId());
-		Article article = sharedData.getArticle();
-		requestComment.setArticleId(article.getId());
-//		sharedData.setBlog(entity.getBody().getBlog());
 		System.out.println("----------------------------");
 		System.out.println(jsonMapper.writeValueAsString(requestComment));
 		System.out.println("----------------------------");
@@ -148,6 +141,8 @@ public class CommentStepDefs extends StepDefs {
 			val entity = restTemplate.exchange(getUrl("comments/" + idCommentList.get(i) + ".json"), 
 					HttpMethod.DELETE, null, Void.class);
 			assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+			idBlogList.remove(i);
+			idCommentList.remove(i);
 		}
 	}
 }
